@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :elix, Elix.Repo,
   username: "postgres",
-  password: "",
+  password: "postgres",
   hostname: "localhost",
   database: "elix_dev",
   stacktrace: true,
@@ -14,8 +14,8 @@ config :elix, Elix.Repo,
 # debugging and code reloading.
 #
 # The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with esbuild to bundle .js and .css sources.
+# watchers to your application. For example, we can use it
+# to bundle .js and .css sources.
 config :elix, ElixWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
@@ -23,7 +23,7 @@ config :elix, ElixWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "0vBqkzJEzqLIEy4Cy51pJgOpksvZGzugRzQIO5sf/SLmnfCiQay3/GjVtQRRHExN",
+  secret_key_base: "/U2ViP0PaPAqoBpgxKodBVl+xR2I317DhnDEy47ye+6gDwGr6Nk+PWLE4yAP3cFo",
   watchers: []
 
 # ## SSL Support
@@ -34,7 +34,6 @@ config :elix, ElixWeb.Endpoint,
 #
 #     mix phx.gen.cert
 #
-# Note that this task requires Erlang/OTP 20 or later.
 # Run `mix help phx.gen.cert` for more information.
 #
 # The `http:` config above can be replaced with:
@@ -49,6 +48,9 @@ config :elix, ElixWeb.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
+
+# Enable dev routes for dashboard and mailbox
+config :elix, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

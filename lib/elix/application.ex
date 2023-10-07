@@ -8,20 +8,12 @@ defmodule Elix.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      Elix.Repo,
-      # Start the Telemetry supervisor
       ElixWeb.Telemetry,
-      # Start the PubSub system
+      Elix.Repo,
       {Phoenix.PubSub, name: Elix.PubSub},
-      # Start the Endpoint (http/https)
       ElixWeb.Endpoint
-      # Start a worker by calling: Elix.Worker.start_link(arg)
-      # {Elix.Worker, arg}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Elix.Supervisor]
     Supervisor.start_link(children, opts)
   end

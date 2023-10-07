@@ -16,22 +16,38 @@ defmodule ElixWeb.PessoaController do
     with {:ok, %Pessoa{} = pessoa} <- Pessoas.create_pessoa(params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", Routes.pessoa_path(conn, :show, pessoa))
+      |> put_resp_header("location", "/pessoas/#{pessoa.id}")
       |> text("")
     end
   end
 
   def search(conn, %{"t" => term}) do
     with pessoas <- Pessoas.get_pessoa_by_term(term) do
+      pessoas = Enum.map(pessoas, &pessoas_json/1)
+
       conn
       |> put_status(200)
-      |> render("index.json", pessoas: pessoas)
+      |> json(pessoas)
     end
   end
 
   def show(conn, %{"id" => id}) do
     pessoa = Pessoas.get_pessoa!(id)
-    render(conn, "show.json", pessoa: pessoa)
+    pessoa = pessoas_json(pessoa)
+
+    conn
+    |> put_status(200)
+    |> json(pessoa)
+  end
+
+  defp pessoas_json(pessoa) do
+    %{
+      id: pessoa.id,
+      apelido: pessoa.apelido,
+      nascimento: pessoa.nascimento,
+      nome: pessoa.nome,
+      stack: String.split(pessoa.stack, " ")
+    }
   end
 
   def count_pessoas(conn, _params) do

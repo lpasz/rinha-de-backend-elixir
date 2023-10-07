@@ -14,9 +14,12 @@ config :elix,
 # Configures the endpoint
 config :elix, ElixWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: ElixWeb.ErrorView, accepts: ~w(json), layout: false],
+  render_errors: [
+    formats: [json: ElixWeb.ErrorJSON],
+    layout: false
+  ],
   pubsub_server: Elix.PubSub,
-  live_view: [signing_salt: "VR0+cE0K"]
+  live_view: [signing_salt: "bttf26f9"]
 
 # Configures Elixir's Logger
 config :logger, :console,

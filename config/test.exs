@@ -17,11 +17,11 @@ config :elix, Elix.Repo,
 # you can enable the server option below.
 config :elix, ElixWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "WImoCM9bDJOwRQMhpt9RrXvjm/5AEuKJAcbPsqPzF6shoxakihyx6sPSQqLVpdcj",
+  secret_key_base: "BxIs+YYKd1UfpvZGUt0foK8HV3Ei4/RF8neas29HBwM2I6rSPEmtavewjcZx55C4",
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
